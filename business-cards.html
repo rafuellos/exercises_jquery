@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery exercise</title>
+  <style>
+    body {
+      font-family: Helvetica, sans-serif;
+    }
+    input {
+      height: 20px;
+      padding: 5px;
+      font-size: 16px;
+    }
+    button {
+      height: 32px;
+      font-size: 16px;
+    }
+    .colours {
+      margin: 20px 0;
+    }
+    .biz-card {
+      margin: 30px 5px;
+      height: 300px;
+      width: 500px;
+      border: 1px solid gray;
+      position: absolute;
+    }
+    .contact ul {
+      list-style: none;
+      position: absolute;
+      bottom: 5px;
+      width: 440px;
+      padding: 0 30px;
+    }
+    .contact li {
+      font-size: 14px;
+      display: inline;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+    }
+    .right-align {
+      float: right;
+    }
+    .heading p {
+      text-align: center;
+    }
+    #name {
+      font-size: 34px;
+    }
+    #job-title {
+      font-size: 20px;
+    }
+    .blue {
+      background-color: #21325D;
+      color: #fff;
+    }
+    .yellow {
+      background-color: #F5FF8D;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>Business Card Builder</h1>
+  <form>
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="job-title" placeholder="Job title">
+    <input type="text" name="phone" placeholder="Phone">
+    <input type="text" name="email" placeholder="Email">
+    <button id="submit">Submit</button>
+    <div class="colours">
+      <button class="blue">Blue</button>
+      <button class="yellow">Yellow</button>
+    </div>
+  </form>
+
+  <div class="biz-card">
+    <div class="heading">
+      <p id="name">Sharon Kennedy</p>
+      <p id="job-title">Professional Trapeze Artist</p>
+    </div>
+    <div class="contact">
+      <ul>
+        <li id="phone">694 37 28 02</li>
+        <li id="email" class="right-align">sharon@ironhack.com</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script>
+    (function() {
+      $('#submit').on('click', function(event) {
+        event.preventDefault()
+        $('#name').empty().append($('[name="name"]').val());    
+        $('#job-title').empty().append($('[name="job-title"]').val());
+        $('#phone').empty().append($('[name="phone"]').val());
+        //$('#email').empty().append($('[name="email"]').val());
+        //var mail = $('[name="email"]').val());
+       
+        $('#email').empty().html('<a href="mailto:' + $('[name=email]').val() + '">' + $('[name=email]').val() + '</a>');
+
+        // your code for creating the business card goes here
+        // get the values from the form fields
+        // add them to the business card
+      });
+
+      $('button.blue').on('click', function(event) {
+        event.preventDefault()
+        $('.biz-card').removeClass('yellow')
+        $('.biz-card').addClass('blue')
+        // your code for changing the colours goes here
+        // add the 'blue' class business card
+      });
+      $('button.yellow').on('click', function(event) {
+        event.preventDefault()
+        $('.biz-card').removeClass('blue')
+        $('.biz-card').addClass('yellow')
+
+        // your code for changing the colours goes here
+        // add the 'yellow' class business card
+        // you can also make your own classes and add them!
+      });
+    })()
+  </script>
+</body>
+</html>
