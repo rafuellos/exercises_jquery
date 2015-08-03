@@ -3,17 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <title>Phrases exercise</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <style type="text/css">
+    .box {
+      margin: 30px 100px;
+      height: 300px;
+      width: 500px;
+      border: 1px solid blue;
+      position: absolute;
+    }
+
+    .phrase {
+      text-align: center;
+      font-size: 34px;
+      color: blue;
+      margin: 20px 5px;
+
+    }
+
+    .change {
+        margin: 15% 40%;
+    }
+
+  </style>
 </head>
 <body>
-  <div>
+  <div class="box">
     <p class="phrase"></p>
+    <button class="change">Change text</button>
   </div>
     
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
   <script type="text/javascript">
-    var phrases = ['Hello there!', 'How are you?', 'See you next week'];
-    //var rand = myArray[Math.floor(Math.random() * myArray.length)]
-    $('.phrase').append(phrases[Math.floor(Math.random() * phrases.length)]);
+    function generatePhrase(){
+      var phrases = ['Hello there!', 'How are you?', 'See you next week'];
+      $('.phrase').append(phrases[Math.floor(Math.random() * phrases.length)]);
+    };
+    
+    generatePhrase();
+    
+    $('.change').click(function(){
+      $('.phrase').empty()
+      generatePhrase();
+    });
+
 
   </script> 
 </body>
