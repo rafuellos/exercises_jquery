@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+      .unicorn-mode{
+
+      }
+    </style>
+  </head>
+    <script type="text/javascript">
+    $(document).on('ready', function(){
+      
+      $('.hello-button').on('click', function () {
+        alert('hello world')
+      });
+
+      $('.js-fader').on('click', function(){
+        $('body > :not(.js-fader').fadeToggle(400)
+      });
+
+      jQuery.fn.extend({
+          toggleText: function (a, b){
+              var isClicked = false;
+              var that = this;
+              this.click(function (){
+                  if (isClicked) { that.text(a); isClicked = false; }
+                  else { that.text(b); isClicked = true; }
+              });
+              return this;
+          }
+      });
+
+      $('.js-fader').toggleText("Ahora me ves!", "Ahora no!");
+
+
+
+    });
+
+    </script>
+  <body>
+    <div class="container" style="margin-top: 50px;">
+      <button class="btn btn-primary hello-button">Do Something</button>
+    </div>
+
+
+    <p>Hi</p>
+    <button class="js-pizza">Pizza</button>
+    <button class="empanadas">Empanadas</button>
+    <button id="cookies">Cookies</button> 
+    <button id="ice-cream">Ice Cream</button>
+    <a href="#shakes">Shakes</a>
+    <button data-hook="coffe donuts">Coffe</button>
+    <ul class="list">
+      <li>Zero</li>
+      <li>One</li>
+      <li>Two</li>
+      <li>Three</li>
+    </ul>
+
+
+    <p>I like pizza</p>
+    <h1 id="title">jQuery exercises</h1>
+    <button class="js-tacos">Tacos</button>
+    <button data-action="do stuff">Do stuff</button>
+
+    <input type="text" value="Rafa" class="js-name">
+
+    <select class="js-options">
+      <option >Option 1</option>
+      <option >Option 2</option>
+    </select>
+    
+    <div class="container"></div>
+
+    <button class="js-fader">Ahora me ves!</button>
+    <button class="unicorn-mode">Colorea!</button>
+
+
+  </body>
+</html>

@@ -17,18 +17,50 @@
       width: 500px;
       border: 1px solid blue;
       position: absolute;
+      border-radius: 3px;
+
     }
 
     .phrase {
-      text-align: center;
       font-size: 34px;
       color: blue;
       margin: 20px 5px;
+      text-align: center;
 
     }
 
     .change {
         margin: 15% 40%;
+    }
+
+    .insert_and_show {
+      float: right;
+      margin: 100px 750px;
+
+      position: absolute;
+    }
+
+    .new_phrase {
+      border: 1px solid gray;
+      border-radius: 2px;
+      text-align: center;
+      margin-bottom: 20px;
+      width: 300px;
+
+    }
+
+    .link_to_list {
+        margin-left: 75px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .phrases_list {
+        color: red;
+    }
+
+    .hidden {
+      display: none;
     }
 
   </style>
@@ -38,20 +70,65 @@
     <p class="phrase"></p>
     <button class="change">Change text</button>
   </div>
+  <div class="insert_and_show">
+    <input type="text" name="name" class="new_phrase" placeholder="Put a new phrase" autofocus>
+    <div>
+      <a id="list_link" class="link_to_list hidden" href="#">Hide phrases</a>
+      <ul class="phrases_list"></ul>
+    </div>
+  </div>  
+
     
   <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
   <script type="text/javascript">
-    function generatePhrase(){
-      var phrases = ['Hello there!', 'How are you?', 'See you next week'];
+    var phrases = ['Hello there!', 'How are you?', 'See you next week'];
+
+    jQuery.fn.extend({
+        toggleText: function (a, b){
+            var isClicked = false;
+            var that = this;
+            this.click(function (){
+                if (isClicked) { that.text(a); isClicked = false; }
+                else { that.text(b); isClicked = true; }
+            });
+            return this;
+        }
+    });
+
+
+    function generatePhrase(phrases){
       $('.phrase').append(phrases[Math.floor(Math.random() * phrases.length)]);
     };
     
-    generatePhrase();
+    generatePhrase(phrases);
     
     $('.change').click(function(){
       $('.phrase').empty()
-      generatePhrase();
+      generatePhrase(phrases);
     });
+
+
+    $('.new_phrase').keyup(function (e) {
+      if (e.keyCode == 13) {
+        $('#list_link').removeClass('hidden');
+        phrases.push($('.new_phrase').val());
+        console.log('phrases %p', phrases);
+        for(var i = 0; i < phrases.length; i++){
+        var html = '<li>' + phrases[i] +'</li>';
+        $('.phrases_list').append(html);
+      };
+      };
+    });
+
+    $('.link_to_list').toggleText("Hide phrases", "Show phrases");
+    
+    $('.link_to_list').click(function(){
+      console.log('Paso por aqui');
+      $('.phrases_list').fadeToggle(400)
+    });
+
+ 
+
 
 
   </script> 
