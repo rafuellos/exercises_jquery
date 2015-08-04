@@ -1,0 +1,43 @@
+.box {
+  margin: 30px 100px;
+  height: 100px;
+  width: 600px;
+  border: 1px solid green;
+  position: absolute;
+  border-radius: 3px;
+
+}
+
+.search_button {
+  border-radius: 4px;
+}
+
+.artist_search {
+  border: 1px solid green;
+  border-radius: 2px;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 300px;
+  margin-left: 100px;
+
+}
+
+.results {
+  position: absolute;
+  margin: 150px 250px;
+  width: 200;
+}
+
+.hidden {
+  display: none;
+}
+
+.title {
+  text-align: center;
+  color: green;
+}
+
+.artist_image {
+  width: 300px;
+
+}

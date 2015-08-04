@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spotify Artist Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="./spotify_search.css">
+  <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script> 
+</head>
+<body>
+  <div class="box">
+    <h2 class="title">Search your favourtie artist in Spotify</h2>
+    <input type="text" name="artist_search" class="artist_search" placeholder="Search an artist" autofocus>
+    <button class="search_button">New Search</button>
+  </div>  
+  <div class="results">
+    <ul class="artists_list"></ul>
+  </div>
+
+    
+  <script type="text/javascript" src="./spotify_search.js"></script> 
+</body>
+</html>
