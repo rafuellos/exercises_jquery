@@ -28,16 +28,32 @@
   width: 200;
 }
 
-.hidden {
-  display: none;
-}
 
 .title {
   text-align: center;
   color: green;
 }
 
-.artist_image {
-  width: 300px;
+.artist_image, .album_image {
+  width: 200px;
+  margin-left: 10px;
 
+}
+
+.each_artist {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.albums_button, .tracksButton {
+  
+  margin-left: 20px;
+}
+
+.albumsModal-dialog {
+  width: 800px;
+}
+
+.albumsModal-dialog {
+  width: 400px;
 }
