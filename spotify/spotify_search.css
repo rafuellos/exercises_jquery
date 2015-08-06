@@ -54,6 +54,11 @@
   width: 800px;
 }
 
-.albumsModal-dialog {
+.tracksModal-dialog {
   width: 400px;
+}
+
+.modal-bodyTracks {
+  padding-left: 10px;
+  padding-top: 10px;
 }

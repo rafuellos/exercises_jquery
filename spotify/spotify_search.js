@@ -76,7 +76,7 @@ function searchAlbums(event) {
        var tracksButton = '<button type="button" class="tracksButton btn btn-primary btn-lg" data-toggle="modal" data-target="#tracksModal">Tracks</button>';
        var artist_li = img + tracksButton +name 
 
-       $('.modal-body').append(artist_li);
+       $('.modal-bodyAlbums').append(artist_li);
 
 
      });
@@ -107,12 +107,13 @@ function searchTracks(event) {
   console.log('Buscando los tracks de %s', albumName);
 
   var request = $.get('https://api.spotify.com/v1/albums/'+ albumId + '/tracks');
+  console.log(request);
   function showTracks(tracksList){
      console.log("Tracks of album %j", tracksList);
      $('.modal-body_tracks').empty();
      tracksList.items.forEach(function listOfTracks(track) {
-       
-
+       var  track = '<p>' + track.track_number + ':'  + track.name + '</p>';
+       $('.modal-bodyTracks').append(track);
      });
 
   }
@@ -136,6 +137,8 @@ $('#openBtn').click(function(){
   $('#myModal').modal({show:true})
 });
 
+
+
 $('.modal').on('hidden.bs.modal', function( event ) {
   $(this).removeClass( 'fv-modal-stack' );
   $('body').data( 'fv_open_modals', $('body').data( 'fv_open_modals' ) - 1 );
@@ -156,7 +159,7 @@ $( '.modal' ).on( 'shown.bs.modal', function ( event ) {
   if ( $(this).hasClass( 'fv-modal-stack' ) )
   {
     return;
-  }
+}
 
 $(this).addClass( 'fv-modal-stack' );
 
@@ -164,13 +167,13 @@ $('body').data( 'fv_open_modals', $('body').data( 'fv_open_modals' ) + 1 );
 
 $(this).css('z-index', 1040 + (10 * $('body').data( 'fv_open_modals' )));
 
-$( '.modal-backdrop' ).not( '.fv-modal-stack' )
-    .css( 'z-index', 1039 + (10 * $('body').data( 'fv_open_modals' )));
+$( '.modal-backdrop' ).not( '.fv-modal-stack' ).
+css( 'z-index', 1039 + (10 * $('body').data( 'fv_open_modals' )));
 
 
 $( '.modal-backdrop' ).not( 'fv-modal-stack' )
-    .addClass( 'fv-modal-stack' ); 
+  .addClass( 'fv-modal-stack' ); 
 
-                 });
+});
 
         
