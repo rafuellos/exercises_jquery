@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+
+<button id="save-location">I was here</button>
+<button id="show-locations">Where was I?</button>
+<button id="clear-locations">Clear my tracks</button>
+<ul id="location-list">
+</ul>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+  $(document).ready(function () {
+    if ("geolocation" in navigator) {
+    addEventListeners();
+  } else {
+    alert("Geolocation is not available")
+  }
+
+  function addEventListeners() {
+    var saveButton = document.getElementById('save-location');
+    saveButton.addEventListener('click', getLocation);
+    var showButton = document.getElementById('show-locations');
+    showButton.addEventListener('click', showLocations);
+    var clearButton = document.getElementById('clear-locations');
+    clearButton.addEventListener('click', clearLocations);
+  }
+
+  function getLocation() {
+    console.log("getting your location")
+    // you know how to do geoloation already, right??
+    // in the success handler, save the location in local storage
+    navigator.geolocation.getCurrentPosition(function(position) {
+      if (window.localStorage.getItem("savedPositions")) {
+        var positions = window.localStorage.getItem("savedPositions") ;
+        var savedPositions = JSON.parse(positions);
+      } else {
+        var savedPositions = []
+      }
+    
+      var position = {
+        longitude: position.coords.longitude,
+        latitude: position.coords.latitude
+      };
+      
+      savedPositions.push(position);
+      window.localStorage.setItem("savedPositions", JSON.stringify(savedPositions)); 
+      console.log(savedPositions);
+      
+      }, function(error) {console.log(error)}, {enableHighAccuracy: true});
+  }
+
+  function showLocations() {
+    console.log("showing locations");
+    // retrieve the locations from local storage and add them to the DOM
+   
+    $('#location-list').empty();
+    var positions = JSON.parse(window.localStorage.getItem("savedPositions"));
+    if (positions) {
+   
+      positions.forEach (function(position){
+        console.log(positions);   
+        $('#location-list').append('<li> Longitude: ' + position.longitude + ', Latitude: ' + position.latitude + '</li>' );
+      });
+    } else {alert('No positions stored yet!')};
+
+      
+  }
+
+  function clearLocations() {
+    console.log('All cleared!')
+    // remove the locations from local storage
+    $('#location-list').empty();
+    window.localStorage.removeItem('savedPositions');
+  };
+
+
+  });
+
+</script>
+
+</body>
+</html>
