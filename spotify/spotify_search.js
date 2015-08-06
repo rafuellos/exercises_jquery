@@ -34,6 +34,7 @@ function searchArtist(event) {
 
   function handleError(err1, err2, err3) {
     console.error('OH NO!!', err1, err2, err3);
+    alert('Please insert an Artist')
   }
 
   request.done(handleArtists);
@@ -74,7 +75,7 @@ function searchAlbums(event) {
        var  name = ' ' + album.name + '</p>';
 
        var tracksButton = '<button type="button" class="tracksButton btn btn-primary btn-lg" data-toggle="modal" data-target="#tracksModal">Tracks</button>';
-       var artist_li = img + tracksButton +name 
+       var artist_li = img + tracksButton +name; 
 
        $('.modal-bodyAlbums').append(artist_li);
 
@@ -112,8 +113,15 @@ function searchTracks(event) {
      console.log("Tracks of album %j", tracksList);
      $('.modal-body_tracks').empty();
      tracksList.items.forEach(function listOfTracks(track) {
-       var  track = '<p>' + track.track_number + ':'  + track.name + '</p>';
-       $('.modal-bodyTracks').append(track);
+       var trackData = '<p dataId="'+ track.preview_url + '">' + track.track_number + ':'  + track.name+ '  </p>';
+       var linkToPreview = '<a href="' + track.preview_url + '" target="_blank" <span class= "listenTrack glyphicon glyphicon-headphones"></span>' 
+       var totalTrack = trackData + linkToPreview;
+      
+       console.log(track.track_number);
+       console.log(track.preview_url);
+       console.log(track.name);
+
+       $('.modal-bodyTracks').append(totalTrack);
      });
 
   }
@@ -126,12 +134,17 @@ function searchTracks(event) {
   request.fail(handleError);
 }
 
+function listenTrack(){
+  alert('Listening the song');
+  var track = $(this).parent().attr("dataId");
 
+}
 
 $('#albumsModal').on('click', '.tracksButton', searchTracks);
-//$('#albumsModal').on('click', '.eachAlbum', $("#tracksModal").modal('show'));
 
 
+
+// Management of modals
 
 $('#openBtn').click(function(){
   $('#myModal').modal({show:true})
